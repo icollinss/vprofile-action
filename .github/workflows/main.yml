@@ -63,12 +63,12 @@ jobs:
       - name: Build and Push Docker Image to ECR
         uses: appleboy/docker-ecr-action@master
         with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           registry: ${{secrets.REGISTRY}}
           region: ${{ env.AWS_REGION }}
-          repository: ${{ env.ECR_REPOSITORY }}
-          image_tag: latest, ${{ github.run_number }}
+          repo: ${{ env.ECR_REPOSITORY }}
+          auto_tag: true
           daemon_off: false
           dockerfile: ./Dockerfile
           context: ./
